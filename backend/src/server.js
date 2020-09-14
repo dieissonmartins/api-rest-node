@@ -1,9 +1,6 @@
 
-//import modulos
-const express = require('express');
-
-//instanciar express
-const app = express();
+//const app = require('./App');
+const app = require('./app');
 
 //iniciar servidor
 app.listen(8080, () => {
