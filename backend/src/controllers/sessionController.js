@@ -15,7 +15,7 @@ class sessionController{
         
         //verificar se usuario existe no sistema
         const user = await User.findOne({
-            username
+            username,
         });
         if(!user){
             return response.status(404).json({error: "User not found!"});
@@ -28,7 +28,7 @@ class sessionController{
         }
 
         const token = sign({},"ee3f65f317390751e35a12e843b62bd1", {
-            subject: user._id,
+            subject: String(user._id),
             expiresIn: '1d'
         });
 
