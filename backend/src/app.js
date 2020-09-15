@@ -3,6 +3,7 @@
 const express   = require('express');
 const mongoose  = require('mongoose');
 const routes    = require('./routes');
+const bodyParser = require('body-parser');
 
 class App {
 
@@ -14,14 +15,25 @@ class App {
         //connect banco de daodos
         this.dataBase();
 
+        //bodyParser http
+        this.bodyParser();
+
+        //middlewares
+        this.middleware();
+
         //rotas 
         this.routes();
+    }
+
+    middleware()
+    {
+        this.server.use(express.json());
     }
 
     //construtor para conectar ao banco de dados
     dataBase()
     {
-        mongoose.connect("mongodb+srv://pitolo:HqxldE4C6d1dbtb6@cluster0.aiiwo.mongodb.net/piloto?retryWrites=true&w=majority",
+        mongoose.connect("mongodb://localhost:27017/piloto",
         { useNewUrlParser: true, useUnifiedTopology: true}
         );
     }
@@ -30,6 +42,13 @@ class App {
     routes()
     {
         this.server.use(routes);
+    }
+
+    bodyParser()
+    {
+        //Body parser
+        this.server.use(bodyParser.urlencoded({extends: false})); // aceitar dados de formularios 
+        this.server.use(bodyParser.json()); // aceitar dados no formato JSON
     }
 }
 
