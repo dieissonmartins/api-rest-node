@@ -12,7 +12,7 @@ class UserController {
     async create(request, response){
         const {name, email, username, password, phone} = request.body;
         
-        const passwordCypt = await hash(password, 8);
+        const passwordCypt = await bcrypt.hash(password, 8);
 
         const user = await User.create({
             name, 
