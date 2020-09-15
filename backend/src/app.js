@@ -33,7 +33,7 @@ class App {
     //construtor para conectar ao banco de dados
     dataBase()
     {
-        mongoose.connect("mongodb://localhost:27017/piloto",
+        mongoose.connect("mongodb+srv://totalzero:g4qqmJwIKA5g0ert@cluster0-ieixk.mongodb.net/test?retryWrites=true&w=majority",
         { useNewUrlParser: true, useUnifiedTopology: true}
         );
     }

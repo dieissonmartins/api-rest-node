@@ -1,5 +1,7 @@
 //modelos 
 const User = require('../schemas/User');
+//encriptar dados 
+const bcrypt = require("bcrypt");
 
 class UserController {
     
@@ -10,11 +12,13 @@ class UserController {
     async create(request, response){
         const {name, email, username, password, phone} = request.body;
         
+        const passwordCypt = await hash(password, 8);
+
         const user = await User.create({
             name, 
             email,
             username,
-            password,
+            password: passwordCypt,
             phone
         });
 
