@@ -7,9 +7,18 @@ class UserController {
         return response.send("Teste");
     }
     
-    create(request, response){
-        const user = require.body;
-        return response.send(user);
+    async create(request, response){
+        const {name, email, username, password, phone} = request.body;
+        
+        const user = await User.create({
+            name, 
+            email,
+            username,
+            password,
+            phone
+        });
+
+        return response.json(user);
     }
 }
 
