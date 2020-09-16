@@ -5,8 +5,10 @@ const bcrypt = require("bcrypt");
 
 class UserController {
     
-    index(request, response){
-        return response.send("Teste");
+    async index(request, response){
+        const users = await User.find();
+        
+        return response.json(users);
     }
     
     async create(request, response){
