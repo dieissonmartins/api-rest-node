@@ -12,6 +12,7 @@ class sessionController{
     async create(request, response)
     {
         const {username, password} = request.body;
+        //response.json(request.body);
         
         //verificar se usuario existe no sistema
         const user = await User.findOne({

@@ -4,6 +4,7 @@ const express   = require('express');
 const mongoose  = require('mongoose');
 const routes    = require('./routes');
 const bodyParser = require('body-parser');
+const cors      = require('cors');
 
 class App {
 
@@ -28,6 +29,7 @@ class App {
     middleware()
     {
         this.server.use(express.json());
+        this.server.use(cors());
     }
 
     //construtor para conectar ao banco de dados
